@@ -17,6 +17,7 @@ const ProductModal = ({ product, setShowProductModal }) => {
 		color: color[0],
 		size: size[0],
 		quantity: 1,
+		price: price,
 	});
 
 	const getAltId = () =>

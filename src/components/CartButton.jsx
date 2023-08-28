@@ -1,11 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+import CartContext from "../context/CartContext";
 
 import { PiShoppingCartLight } from "react-icons/pi";
 
 import { AnimatePresence, motion } from "framer-motion";
 
 const NavbarButton = ({ setToggleCart }) => {
+	const { cartItems } = useContext(CartContext);
+
 	const [showName, setShowName] = useState(false);
+
+	const countCartItems = () => {
+		let count = 0;
+		cartItems.forEach((item) => (count += item.quantity));
+		return count;
+	};
 
 	useEffect(() => {
 		if (showName) {
@@ -33,6 +43,9 @@ const NavbarButton = ({ setToggleCart }) => {
 					</motion.h2>
 				)}
 			</AnimatePresence>
+			<div className="absolute flex items-center justify-center w-6 h-6 text-sm border rounded-full -right-3 text-rose-900 border-rose-400">
+				{countCartItems()}
+			</div>
 		</button>
 	);
 };

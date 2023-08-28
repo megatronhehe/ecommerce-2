@@ -182,5 +182,15 @@
       "quantity": 1
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": "whateverhoodie2hoodierose-900xs",
+      "name": "whatever hoodie 2",
+      "type": "hoodie",
+      "color": "rose-900",
+      "size": "xs",
+      "quantity": 4,
+      "price": 30
+    }
+  ]
 }
