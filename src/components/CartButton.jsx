@@ -24,10 +24,11 @@ const NavbarButton = ({ setToggleCart }) => {
 	}, [showName]);
 
 	return (
-		<button
+		<motion.button
 			onClick={() => setToggleCart(true)}
 			onMouseEnter={() => setShowName(true)}
 			onMouseLeave={() => setShowName(false)}
+			whileHover={{ scale: 1.2 }}
 			className="relative flex items-center justify-center p-3 "
 		>
 			<PiShoppingCartLight />
@@ -46,7 +47,7 @@ const NavbarButton = ({ setToggleCart }) => {
 			<div className="absolute flex items-center justify-center w-6 h-6 text-sm border rounded-full -right-3 text-rose-900 border-rose-400">
 				{countCartItems()}
 			</div>
-		</button>
+		</motion.button>
 	);
 };
 

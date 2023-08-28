@@ -4,7 +4,9 @@ import ProductCard from "../../components/ProductCard";
 
 import { Link, useSearchParams } from "react-router-dom";
 
+import { PiSquaresFourFill } from "react-icons/pi";
 import ProductsContext from "../../context/productsContext";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Products = () => {
 	const { products, isFetching, error } = useContext(ProductsContext);
@@ -47,7 +49,8 @@ const Products = () => {
 			<section className="w-full max-w-4xl p-2">
 				<h1 className="pb-4 mb-4 text-xl border-b">Whatevs Products</h1>
 
-				<ul className="flex gap-2 mb-4 text-sm">
+				<ul className="flex items-center gap-2 mb-4 text-sm">
+					<PiSquaresFourFill className="w-12 pr-2 mr-2 text-2xl border-r" />
 					<Link
 						to="."
 						className={`px-2 py-1 border rounded-md 
@@ -62,18 +65,40 @@ const Products = () => {
 					{producsTypeElement}
 				</ul>
 
-				{isFetching ? (
-					<p className="my-32 text-center">Loading ...</p>
-				) : error ? (
-					<div className="flex flex-col items-center w-full my-40">
-						<p>{error}</p>
-						<p>Try again later..</p>
-					</div>
-				) : (
-					<ul className="grid grid-cols-2 gap-2 md:grid-cols-3">
-						{productsElement}
-					</ul>
-				)}
+				<AnimatePresence mode="wait">
+					{isFetching ? (
+						<motion.p
+							key={isFetching}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="my-32 text-center"
+						>
+							Loading ...
+						</motion.p>
+					) : error ? (
+						<motion.div
+							key={error}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="flex flex-col items-center w-full my-40"
+						>
+							<p>{error}</p>
+							<p>Try again later..</p>
+						</motion.div>
+					) : (
+						<motion.ul
+							key={typeFilter}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="grid grid-cols-2 gap-2 md:grid-cols-3"
+						>
+							{productsElement}
+						</motion.ul>
+					)}
+				</AnimatePresence>
 			</section>
 		</main>
 	);

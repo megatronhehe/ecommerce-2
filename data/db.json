@@ -184,12 +184,12 @@
   ],
   "cart": [
     {
-      "id": "whateverhoodie2hoodierose-900xs",
-      "name": "whatever hoodie 2",
+      "id": "whateverhoodie1hoodieblackm",
+      "name": "whatever hoodie 1",
       "type": "hoodie",
-      "color": "rose-900",
-      "size": "xs",
-      "quantity": 4,
+      "color": "black",
+      "size": "m",
+      "quantity": 1,
       "price": 30
     }
   ]

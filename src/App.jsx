@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
 import Cart from "./components/Cart";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
 	const { toggleCart } = useContext(CartContext);
@@ -20,7 +21,7 @@ const App = () => {
 				<Route path="/products" element={<Products />} />
 			</Routes>
 
-			{toggleCart && <Cart />}
+			<AnimatePresence>{toggleCart && <Cart />}</AnimatePresence>
 		</div>
 	);
 };

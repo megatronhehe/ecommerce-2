@@ -4,6 +4,8 @@ import defaultImg from "./../assets/defaultimg.jpg";
 
 import CartContext from "../context/CartContext";
 
+import { motion } from "framer-motion";
+
 import { PiArrowLineRightLight } from "react-icons/pi";
 
 const Cart = () => {
@@ -54,11 +56,18 @@ const Cart = () => {
 		: [];
 
 	return (
-		<section
+		<motion.section
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
 			onClick={() => setToggleCart(false)}
 			className="fixed top-0 right-0 z-30 flex justify-end w-full h-full backdrop-filter backdrop-blur-sm"
 		>
-			<div
+			<motion.div
+				initial={{ x: 200 }}
+				animate={{ x: 0 }}
+				exit={{ x: 200 }}
+				transition={{ type: "tween" }}
 				onClick={(e) => e.stopPropagation()}
 				className="absolute h-full p-4 bg-white border-l w-72 rounded-l-xl"
 			>
@@ -67,7 +76,7 @@ const Cart = () => {
 				<div className="pb-4 mb-4 border-b">
 					<ul className="flex justify-between mb-4">
 						<li>Total items: {countCartItems()}</li>
-						<li>Total price : ${countTotalPrice() - 0.01}</li>
+						<li>Total price : ${countTotalPrice()}</li>
 					</ul>
 					<button className="w-full py-1 text-center text-white bg-rose-900 rounded-xl">
 						checkout
@@ -82,8 +91,8 @@ const Cart = () => {
 				>
 					<PiArrowLineRightLight />
 				</button>
-			</div>
-		</section>
+			</motion.div>
+		</motion.section>
 	);
 };
 

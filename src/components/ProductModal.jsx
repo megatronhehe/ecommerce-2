@@ -6,6 +6,8 @@ import defaultImg from "../assets/defaultImg.jpg";
 
 import { PiShoppingCartLight } from "react-icons/pi";
 
+import { AnimatePresence, motion } from "framer-motion";
+
 const ProductModal = ({ product, setShowProductModal }) => {
 	const { name, price, color, type, size } = product;
 	const { addToCart } = useContext(CartContext);
@@ -47,19 +49,28 @@ const ProductModal = ({ product, setShowProductModal }) => {
 	};
 
 	const colorElement = color.map((color) => (
-		<li
+		<motion.li
+			whileHover={{ scale: 1.3 }}
 			key={color}
 			onClick={() => selectColor(color)}
 			className={`bg-${color} w-8 h-8 rounded-full shadow-md flex items-center justify-center`}
 		>
-			{thisProduct.color === color && (
-				<div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
-			)}
-		</li>
+			<AnimatePresence>
+				{thisProduct.color === color && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						className="w-6 h-6 border-2 border-gray-300 rounded-full"
+					></motion.div>
+				)}
+			</AnimatePresence>
+		</motion.li>
 	));
 
 	const sizeElement = size.map((size) => (
-		<li
+		<motion.li
+			whileHover={{ scale: 1.3 }}
 			key={size}
 			onClick={() => selectSize(size)}
 			className={`w-8 px-2 text-lg text-center border rounded-md border-rose-900 text-rose-900 ${
@@ -67,11 +78,14 @@ const ProductModal = ({ product, setShowProductModal }) => {
 			}`}
 		>
 			{size}
-		</li>
+		</motion.li>
 	));
 
 	return (
-		<div
+		<motion.div
+			initial={{ opacity: 0, y: -20 }}
+			animate={{ opacity: 1, y: 0 }}
+			exit={{ opacity: 0, y: -20 }}
 			onClick={() => setShowProductModal(false)}
 			className="fixed top-0 left-0 z-20 flex items-center justify-center w-full h-full "
 		>
@@ -112,7 +126,7 @@ const ProductModal = ({ product, setShowProductModal }) => {
 						<div className="flex items-center gap-4">
 							<button
 								onClick={addQty}
-								className="w-8 h-8 bg-gray-200 rounded-full"
+								className="w-8 h-8 bg-gray-200 rounded-full hover:bg-white"
 							>
 								+
 							</button>
@@ -122,7 +136,7 @@ const ProductModal = ({ product, setShowProductModal }) => {
 							<button
 								disabled={thisProduct.quantity < 2}
 								onClick={subQty}
-								className="w-8 h-8 bg-gray-200 rounded-full"
+								className="w-8 h-8 bg-gray-200 rounded-full hover:bg-white"
 							>
 								-
 							</button>
@@ -137,7 +151,7 @@ const ProductModal = ({ product, setShowProductModal }) => {
 					</div>
 				</div>
 			</section>
-		</div>
+		</motion.div>
 	);
 };
 

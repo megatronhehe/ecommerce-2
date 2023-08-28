@@ -20,31 +20,39 @@ const CartContextProvider = ({ children }) => {
 				method: "PUT",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(thisProduct),
-			}).then((res) => {
-				if (!res.ok) {
-					console.log(res.status);
-				} else {
-					setCartItems((prev) =>
-						prev.map((item) =>
-							item.id === thisProduct.id
-								? { ...item, quantity: item.quantity + thisProduct.quantity }
-								: item
-						)
-					);
-				}
-			});
+			})
+				.then((res) => {
+					if (!res.ok) {
+						console.log(res.status);
+					} else {
+						setCartItems((prev) =>
+							prev.map((item) =>
+								item.id === thisProduct.id
+									? { ...item, quantity: item.quantity + thisProduct.quantity }
+									: item
+							)
+						);
+					}
+				})
+				.then(() => {
+					setToggleCart(true);
+				});
 		} else {
 			fetch("http://localhost:8000/cart", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(thisProduct),
-			}).then((res) => {
-				if (!res.ok) {
-					console.log(res.status);
-				} else {
-					setCartItems((prev) => [...prev, thisProduct]);
-				}
-			});
+			})
+				.then((res) => {
+					if (!res.ok) {
+						console.log(res.status);
+					} else {
+						setCartItems((prev) => [...prev, thisProduct]);
+					}
+				})
+				.then(() => {
+					setToggleCart(true);
+				});
 		}
 	};
 
