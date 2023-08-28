@@ -4,13 +4,13 @@ import CartContext from "../context/CartContext";
 
 import defaultImg from "../assets/defaultImg.jpg";
 
-import { PiShoppingCartLight } from "react-icons/pi";
+import { PiShoppingCartLight, PiCircleDashed } from "react-icons/pi";
 
 import { AnimatePresence, motion } from "framer-motion";
 
 const ProductModal = ({ product, setShowProductModal }) => {
 	const { name, price, color, type, size } = product;
-	const { addToCart } = useContext(CartContext);
+	const { addToCart, isLoading } = useContext(CartContext);
 
 	const [thisProduct, setThisProduct] = useState({
 		id: "",
@@ -94,8 +94,9 @@ const ProductModal = ({ product, setShowProductModal }) => {
 				className="w-full max-w-xl p-2 bg-gray-100 shadow-sm rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-60"
 			>
 				<div className="flex gap-2">
-					<img src={defaultImg} className="w-4/5 rounded-xl" />
-					<div className="flex flex-col w-1/5 gap-2 classn">
+					<img src={defaultImg} className="w-5/6 rounded-xl" />
+					<div className="flex flex-col w-1/6 gap-2 classn">
+						<img src={defaultImg} className="w-full rounded-xl" />
 						<img src={defaultImg} className="w-full rounded-xl" />
 						<img src={defaultImg} className="w-full rounded-xl" />
 						<img src={defaultImg} className="w-full rounded-xl" />
@@ -143,10 +144,23 @@ const ProductModal = ({ product, setShowProductModal }) => {
 						</div>
 
 						<button
+							disabled={isLoading}
 							onClick={() => addToCart(thisProduct)}
-							className="flex items-center gap-2 px-3 py-1 border rounded-lg border-rose-900 text-rose-900 hover:bg-rose-900 hover:text-white"
+							className="flex items-center justify-center w-20 gap-2 px-3 py-1 text-2xl border rounded-lg border-rose-900 text-rose-900 hover:bg-rose-900 hover:text-white"
 						>
-							+<PiShoppingCartLight />
+							{isLoading ? (
+								<motion.div
+									key={isLoading}
+									animate={{ rotate: 360 }}
+									transition={{ repeat: "loop", duration: 1 }}
+								>
+									<PiCircleDashed />
+								</motion.div>
+							) : (
+								<div>
+									<PiShoppingCartLight />
+								</div>
+							)}
 						</button>
 					</div>
 				</div>

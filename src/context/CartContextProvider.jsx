@@ -4,6 +4,7 @@ import CartContext from "./CartContext";
 
 const CartContextProvider = ({ children }) => {
 	const [toggleCart, setToggleCart] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const [cartItems, setCartItems] = useState([]);
 
 	useEffect(() => {
@@ -13,6 +14,7 @@ const CartContextProvider = ({ children }) => {
 	}, []);
 
 	const addToCart = (thisProduct) => {
+		setIsLoading(true);
 		const isItemExist = cartItems.find((item) => item.id === thisProduct.id);
 
 		if (isItemExist) {
@@ -36,6 +38,9 @@ const CartContextProvider = ({ children }) => {
 				})
 				.then(() => {
 					setToggleCart(true);
+				})
+				.finally(() => {
+					setIsLoading(false);
 				});
 		} else {
 			fetch("http://localhost:8000/cart", {
@@ -52,20 +57,28 @@ const CartContextProvider = ({ children }) => {
 				})
 				.then(() => {
 					setToggleCart(true);
+				})
+				.finally(() => {
+					setIsLoading(false);
 				});
 		}
 	};
 
 	const removeFromCart = (id) => {
+		setIsLoading(true);
 		fetch(`http://localhost:8000/cart/${id}`, {
 			method: "DELETE",
-		}).then((res) => {
-			if (!res.ok) {
-				console.log(res.status);
-			} else {
-				setCartItems((prev) => prev.filter((item) => item.id !== id));
-			}
-		});
+		})
+			.then((res) => {
+				if (!res.ok) {
+					console.log(res.status);
+				} else {
+					setCartItems((prev) => prev.filter((item) => item.id !== id));
+				}
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
 	};
 
 	return (
@@ -76,6 +89,7 @@ const CartContextProvider = ({ children }) => {
 				cartItems,
 				addToCart,
 				removeFromCart,
+				isLoading,
 			}}
 		>
 			{children}
