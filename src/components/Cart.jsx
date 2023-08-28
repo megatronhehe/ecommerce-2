@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import defaultImg from "./../assets/defaultimg.jpg";
 
@@ -11,6 +11,8 @@ import { PiArrowLineRightLight, PiX, PiCircleDashed } from "react-icons/pi";
 const Cart = () => {
 	const { setToggleCart, cartItems, removeFromCart, isLoading } =
 		useContext(CartContext);
+
+	const [deletingItemId, setDeletingItemId] = useState(false);
 
 	const countCartItems = () => {
 		let count = 0;
@@ -27,11 +29,12 @@ const Cart = () => {
 	const cartItemsElement = cartItems
 		? cartItems.map((item) => (
 				<motion.li
+					layout
 					initial={false}
-					animate={{ opacity: 1, height: "auto" }}
-					exit={{ opacity: 0, height: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
 					key={item.id}
-					className="relative flex justify-between gap-2 bg-white rounded-lg"
+					className="relative flex justify-between gap-2 bg-white rounded-lg "
 				>
 					<img src={defaultImg} className="w-2/5 border" />
 					<div className="flex flex-col items-center w-full gap-2">
@@ -50,11 +53,14 @@ const Cart = () => {
 							</li>
 							<li>
 								<button
-									disabled={isLoading}
-									onClick={() => removeFromCart(item.id)}
+									disabled={isLoading && deletingItemId === item.id}
+									onClick={() => {
+										removeFromCart(item.id);
+										setDeletingItemId(item.id);
+									}}
 									className="flex items-center justify-center w-6 h-6 text-white rounded-md bg-rose-400"
 								>
-									{isLoading ? (
+									{isLoading && deletingItemId === item.id ? (
 										<motion.div
 											key={isLoading}
 											animate={{ rotate: 360 }}
@@ -83,7 +89,7 @@ const Cart = () => {
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
 			onClick={() => setToggleCart(false)}
-			className="fixed top-0 right-0 z-30 flex justify-end w-full min-h-full overflow-hidden backdrop-filter backdrop-blur-sm"
+			className="fixed top-0 right-0 z-30 flex justify-end w-full min-h-full backdrop-filter backdrop-blur-sm"
 		>
 			<motion.div
 				initial={{ x: 200 }}
@@ -91,7 +97,7 @@ const Cart = () => {
 				exit={{ x: 200 }}
 				transition={{ type: "tween" }}
 				onClick={(e) => e.stopPropagation()}
-				className="absolute h-full p-4 bg-white border-l w-80 rounded-l-xl"
+				className="absolute h-full p-4 overflow-hidden bg-white border-l w-80 rounded-l-xl"
 			>
 				<h1 className="pb-4 pl-4 mb-4 text-xl border-b">Cart</h1>
 
@@ -105,13 +111,26 @@ const Cart = () => {
 					</button>
 				</div>
 
-				<ul className="flex flex-col overflow-auto">
-					<AnimatePresence>{cartItemsElement}</AnimatePresence>
+				<ul className="flex flex-col gap-2 overflow-auto h-5/6">
+					<AnimatePresence>
+						{cartItems.length > 0 ? (
+							cartItemsElement
+						) : (
+							<motion.p
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}
+								className="mt-40 text-center text-gray-400 "
+							>
+								cart is empty!
+							</motion.p>
+						)}
+					</AnimatePresence>
 				</ul>
 
 				<button
 					onClick={() => setToggleCart(false)}
-					className="absolute flex items-center justify-center w-8 h-8 bg-white border rounded-full top-4 -left-4"
+					className="absolute flex items-center justify-center w-8 h-8 bg-white border rounded-full top-4 right-4"
 				>
 					<PiArrowLineRightLight />
 				</button>

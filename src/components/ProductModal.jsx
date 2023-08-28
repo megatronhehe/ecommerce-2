@@ -53,7 +53,7 @@ const ProductModal = ({ product, setShowProductModal }) => {
 			whileHover={{ scale: 1.3 }}
 			key={color}
 			onClick={() => selectColor(color)}
-			className={`bg-${color} w-8 h-8 rounded-full shadow-md flex items-center justify-center`}
+			className={`bg-${color} w-8 h-8 rounded-full shadow-md flex items-center justify-center `}
 		>
 			<AnimatePresence>
 				{thisProduct.color === color && (
@@ -73,7 +73,7 @@ const ProductModal = ({ product, setShowProductModal }) => {
 			whileHover={{ scale: 1.3 }}
 			key={size}
 			onClick={() => selectSize(size)}
-			className={`w-8 px-2 text-lg text-center border rounded-md border-rose-900 text-rose-900 ${
+			className={`w-8 px-2 flex items-center justify-center text-lg text-center border rounded-md border-rose-900 text-rose-900 ${
 				thisProduct.size === size ? "bg-rose-900 text-white" : "text-rose-900"
 			}`}
 		>
