@@ -29,55 +29,56 @@ const Cart = () => {
 	const cartItemsElement = cartItems
 		? cartItems.map((item) => (
 				<motion.li
-					layout
 					initial={false}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
+					animate={{ opacity: 1, height: "auto" }}
+					exit={{ opacity: 0, height: 0 }}
 					key={item.id}
-					className="relative flex justify-between gap-2 bg-white rounded-lg "
 				>
-					<img src={defaultImg} className="w-2/5 border" />
-					<div className="flex flex-col items-center w-full gap-2">
-						<h1 className="pb-2 border-b">{item.name}</h1>
+					<div className="relative flex justify-between gap-2 mb-2 bg-white border">
+						<img src={defaultImg} className="w-2/5 " />
 
-						<ul className="flex justify-around w-full">
-							<li className={`w-6 h-6 rounded-full bg-${item.color}`}></li>
-							<li className="text-sm">{item.size}</li>
-						</ul>
+						<div className="flex flex-col items-center w-full gap-2">
+							<h1 className="pb-2 border-b">{item.name}</h1>
 
-						<ul className="flex items-center justify-around w-full">
-							<li className="flex items-center gap-2">
-								<button className="p-2">+</button>
-								{item.quantity}
-								<button className="p-2">-</button>
-							</li>
-							<li>
-								<button
-									disabled={isLoading && deletingItemId === item.id}
-									onClick={() => {
-										removeFromCart(item.id);
-										setDeletingItemId(item.id);
-									}}
-									className="flex items-center justify-center w-6 h-6 text-white rounded-md bg-rose-400"
-								>
-									{isLoading && deletingItemId === item.id ? (
-										<motion.div
-											key={isLoading}
-											animate={{ rotate: 360 }}
-											transition={{ repeat: "loop", duration: 1 }}
-										>
-											<PiCircleDashed />
-										</motion.div>
-									) : (
-										<div>
-											<PiX />
-										</div>
-									)}
-								</button>
-							</li>
-						</ul>
+							<ul className="flex justify-around w-full">
+								<li className={`w-6 h-6 rounded-full bg-${item.color}`}></li>
+								<li className="text-sm">{item.size}</li>
+							</ul>
 
-						<div className="absolute top-1 left-1">${item.price}</div>
+							<ul className="flex items-center justify-around w-full">
+								<li className="flex items-center gap-2">
+									<button className="p-2">+</button>
+									{item.quantity}
+									<button className="p-2">-</button>
+								</li>
+								<li>
+									<button
+										disabled={isLoading && deletingItemId === item.id}
+										onClick={() => {
+											removeFromCart(item.id);
+											setDeletingItemId(item.id);
+										}}
+										className="flex items-center justify-center w-6 h-6 text-white rounded-md bg-rose-400"
+									>
+										{isLoading && deletingItemId === item.id ? (
+											<motion.div
+												key={isLoading}
+												animate={{ rotate: 360 }}
+												transition={{ repeat: "loop", duration: 1 }}
+											>
+												<PiCircleDashed />
+											</motion.div>
+										) : (
+											<div>
+												<PiX />
+											</div>
+										)}
+									</button>
+								</li>
+							</ul>
+
+							<div className="absolute top-1 left-1">${item.price}</div>
+						</div>
 					</div>
 				</motion.li>
 		  ))
@@ -111,8 +112,8 @@ const Cart = () => {
 					</button>
 				</div>
 
-				<ul className="flex flex-col gap-2 overflow-auto h-5/6">
-					<AnimatePresence>
+				<ul className="flex flex-col overflow-auto h-5/6">
+					<AnimatePresence initial={false}>
 						{cartItems.length > 0 ? (
 							cartItemsElement
 						) : (
@@ -120,7 +121,7 @@ const Cart = () => {
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }}
-								className="mt-40 text-center text-gray-400 "
+								className="h-full mt-40 text-center text-gray-400"
 							>
 								cart is empty!
 							</motion.p>
