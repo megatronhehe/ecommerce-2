@@ -184,10 +184,28 @@
   ],
   "cart": [
     {
-      "id": "whateverhoodie1hoodiewhiteS",
-      "name": "whatever hoodie 1",
+      "id": "whateverhoodie2hoodiegray-600XS",
+      "name": "whatever hoodie 2",
       "type": "hoodie",
-      "color": "white",
+      "color": "gray-600",
+      "size": "XS",
+      "quantity": 3,
+      "price": 30
+    },
+    {
+      "id": "whateverhoodie2hoodieblackXS",
+      "name": "whatever hoodie 2",
+      "type": "hoodie",
+      "color": "black",
+      "size": "XS",
+      "quantity": 1,
+      "price": 30
+    },
+    {
+      "id": "whateverhoodie2hoodieblue-800S",
+      "name": "whatever hoodie 2",
+      "type": "hoodie",
+      "color": "blue-800",
       "size": "S",
       "quantity": 1,
       "price": 30

@@ -82,6 +82,7 @@ const CartContextProvider = ({ children }) => {
 	};
 
 	const addQtyInCart = (id) => {
+		setIsLoading(true);
 		const thisItem = cartItems.find((item) => item.id === id);
 
 		fetch(`http://localhost:8000/cart/${id}`, {
