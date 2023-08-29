@@ -184,20 +184,11 @@
   ],
   "cart": [
     {
-      "id": "whateverhoodie1hoodiewhiteM",
+      "id": "whateverhoodie1hoodiewhiteS",
       "name": "whatever hoodie 1",
       "type": "hoodie",
       "color": "white",
-      "size": "M",
-      "quantity": 1,
-      "price": 30
-    },
-    {
-      "id": "whateverhoodie1hoodieblue-800M",
-      "name": "whatever hoodie 1",
-      "type": "hoodie",
-      "color": "blue-800",
-      "size": "M",
+      "size": "S",
       "quantity": 1,
       "price": 30
     }

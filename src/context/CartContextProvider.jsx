@@ -81,6 +81,55 @@ const CartContextProvider = ({ children }) => {
 			});
 	};
 
+	const addQtyInCart = (id) => {
+		const thisItem = cartItems.find((item) => item.id === id);
+
+		fetch(`http://localhost:8000/cart/${id}`, {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ ...thisItem, quantity: thisItem.quantity + 1 }),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					console.log(res.status);
+				} else {
+					setCartItems((prev) =>
+						prev.map((item) =>
+							item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+						)
+					);
+				}
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+	};
+
+	const subQtyInCart = (id) => {
+		setIsLoading(true);
+		const thisItem = cartItems.find((item) => item.id === id);
+
+		fetch(`http://localhost:8000/cart/${id}`, {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ ...thisItem, quantity: thisItem.quantity - 1 }),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					console.log(res.status);
+				} else {
+					setCartItems((prev) =>
+						prev.map((item) =>
+							item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+						)
+					);
+				}
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+	};
+
 	return (
 		<CartContext.Provider
 			value={{
@@ -90,6 +139,8 @@ const CartContextProvider = ({ children }) => {
 				addToCart,
 				removeFromCart,
 				isLoading,
+				addQtyInCart,
+				subQtyInCart,
 			}}
 		>
 			{children}

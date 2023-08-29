@@ -9,10 +9,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import { PiArrowLineRightLight, PiX, PiCircleDashed } from "react-icons/pi";
 
 const Cart = () => {
-	const { setToggleCart, cartItems, removeFromCart, isLoading } =
-		useContext(CartContext);
+	const {
+		setToggleCart,
+		cartItems,
+		removeFromCart,
+		addQtyInCart,
+		subQtyInCart,
+		isLoading,
+	} = useContext(CartContext);
 
-	const [deletingItemId, setDeletingItemId] = useState(false);
+	const [deletingItemId, setDeletingItemId] = useState("");
+	const [editingQtyItemId, setEditingQtyItemId] = useState("");
 
 	const countCartItems = () => {
 		let count = 0;
@@ -47,9 +54,21 @@ const Cart = () => {
 
 							<ul className="flex items-center justify-around w-full">
 								<li className="flex items-center gap-2">
-									<button className="p-2">+</button>
+									<button
+										disabled={isLoading}
+										onClick={() => addQtyInCart(item.id)}
+										className="p-2"
+									>
+										+
+									</button>
 									{item.quantity}
-									<button className="p-2">-</button>
+									<button
+										disabled={isLoading || item.quantity < 2}
+										onClick={() => subQtyInCart(item.id)}
+										className="p-2"
+									>
+										-
+									</button>
 								</li>
 								<li>
 									<button
