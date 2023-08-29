@@ -114,6 +114,7 @@ const Cart = () => {
 										onClick={() => {
 											removeFromCart(item.id);
 											setDeletingItemId(item.id);
+											setEditingQtyItemId("");
 										}}
 										className="flex items-center justify-center w-6 h-6 text-white rounded-md bg-rose-400"
 									>
