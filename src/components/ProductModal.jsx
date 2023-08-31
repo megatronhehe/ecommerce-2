@@ -9,7 +9,7 @@ import { PiShoppingCartLight, PiCircleDashed } from "react-icons/pi";
 import { AnimatePresence, motion } from "framer-motion";
 
 const ProductModal = ({ product, setShowProductModal }) => {
-	const { name, price, color, type, size } = product;
+	const { name, price, color, type, size, description, img } = product;
 	const { addToCart, isLoading } = useContext(CartContext);
 
 	const [thisProduct, setThisProduct] = useState({
@@ -21,6 +21,8 @@ const ProductModal = ({ product, setShowProductModal }) => {
 		quantity: 1,
 		price: price,
 	});
+
+	const [selectedSection, setSelectedSection] = useState("modify");
 
 	const getAltId = () =>
 		`${thisProduct.name}${thisProduct.type}${thisProduct.color}${thisProduct.size}`.replace(
@@ -87,83 +89,121 @@ const ProductModal = ({ product, setShowProductModal }) => {
 			animate={{ opacity: 1, y: 0 }}
 			exit={{ opacity: 0, y: -20 }}
 			onClick={() => setShowProductModal(false)}
-			className="fixed top-0 left-0 z-20 flex items-center justify-center w-full h-full "
+			className="fixed top-0 left-0 z-20 flex items-center justify-center w-full h-full"
 		>
 			<section
 				onClick={(e) => e.stopPropagation()}
 				className="w-full max-w-xl p-2 bg-gray-100 shadow-sm rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-60"
 			>
-				<div className="flex gap-2">
-					<img src={defaultImg} className="w-5/6 rounded-xl" />
-					<div className="flex flex-col w-1/6 gap-2 classn">
-						<img src={defaultImg} className="w-full rounded-xl" />
-						<img src={defaultImg} className="w-full rounded-xl" />
-						<img src={defaultImg} className="w-full rounded-xl" />
-						<img src={defaultImg} className="w-full rounded-xl" />
-						<img src={defaultImg} className="w-full rounded-xl" />
-					</div>
+				<div className="flex w-full gap-2 h-1/2">
+					<img src={defaultImg} className="object-cover w-5/6 rounded-xl" />
+					<ul className="flex flex-col w-1/6 gap-2 ">
+						<li>
+							<img src={defaultImg} className="w-full rounded-xl" />
+						</li>
+						<li>
+							<img src={defaultImg} className="w-full rounded-xl" />
+						</li>
+						<li>
+							<img src={defaultImg} className="w-full rounded-xl" />
+						</li>
+					</ul>
 				</div>
-				<div className="flex py-2">
+
+				<div className="py-2">
 					<h2 className="w-full pb-2 text-xl text-center border-b">{name}</h2>
-				</div>
 
-				<div className="flex gap-2">
-					<div className="flex flex-col items-center justify-between w-2/3 gap-4 p-2 border rounded-lg">
-						<div className="flex flex-col items-center gap-2">
-							<h3>color</h3>
-							<ul className="flex items-center justify-center gap-2 ">
-								{colorElement}
-							</ul>
-						</div>
-						<div className="flex flex-col items-center gap-2">
-							<h3>size</h3>
-							<ul className="flex justify-center gap-2 ">{sizeElement}</ul>
-						</div>
-					</div>
-
-					<div className="flex flex-col items-center justify-between w-1/3 p-2 border rounded-lg">
-						<p>${price * thisProduct.quantity}</p>
-
-						<div className="flex items-center gap-4">
-							<button
-								onClick={addQty}
-								className="w-8 h-8 bg-gray-200 rounded-full hover:bg-white"
-							>
-								+
-							</button>
-
-							<p>{thisProduct.quantity}</p>
-
-							<button
-								disabled={thisProduct.quantity < 2}
-								onClick={subQty}
-								className="w-8 h-8 bg-gray-200 rounded-full hover:bg-white"
-							>
-								-
-							</button>
-						</div>
-
-						<button
-							disabled={isLoading}
-							onClick={() => addToCart(thisProduct)}
-							className="flex items-center justify-center w-20 gap-2 px-3 py-1 text-2xl border rounded-lg border-rose-900 text-rose-900 hover:bg-rose-900 hover:text-white"
+					<ul className="flex justify-center">
+						<li
+							onClick={() => setSelectedSection("modify")}
+							className={`w-1/2 py-2 text-center border-b-4 
+							${
+								selectedSection === "modify"
+									? "border-rose-900 text-rose-900"
+									: "border-gray-100 text-gray-400"
+							}
+							`}
 						>
-							{isLoading ? (
-								<motion.div
-									key={isLoading}
-									animate={{ rotate: 360 }}
-									transition={{ repeat: "loop", duration: 1 }}
-								>
-									<PiCircleDashed />
-								</motion.div>
-							) : (
-								<div>
-									<PiShoppingCartLight />
-								</div>
-							)}
-						</button>
-					</div>
+							Modify
+						</li>
+						<li
+							onClick={() => setSelectedSection("description")}
+							className={`w-1/2 py-2 text-center border-b-4 
+							${
+								selectedSection === "description"
+									? "border-rose-900 text-rose-900"
+									: "border-gray-100 text-gray-400"
+							}
+							`}
+						>
+							Description
+						</li>
+					</ul>
 				</div>
+
+				{selectedSection === "modify" ? (
+					<section className="flex h-40 gap-2">
+						<div className="flex flex-col items-center justify-between w-2/3 gap-4 p-2 border rounded-lg">
+							<div className="flex flex-col items-center gap-2">
+								<h3>color</h3>
+								<ul className="flex items-center justify-center gap-2 ">
+									{colorElement}
+								</ul>
+							</div>
+							<div className="flex flex-col items-center gap-2">
+								<h3>size</h3>
+								<ul className="flex justify-center gap-2 ">{sizeElement}</ul>
+							</div>
+						</div>
+
+						<div className="flex flex-col items-center justify-between w-1/3 p-2 border rounded-lg">
+							<p>${price * thisProduct.quantity}</p>
+
+							<div className="flex items-center gap-4">
+								<button
+									onClick={addQty}
+									className="w-8 h-8 bg-gray-200 rounded-full hover:bg-white"
+								>
+									+
+								</button>
+
+								<p>{thisProduct.quantity}</p>
+
+								<button
+									disabled={thisProduct.quantity < 2}
+									onClick={subQty}
+									className="w-8 h-8 bg-gray-200 rounded-full hover:bg-white"
+								>
+									-
+								</button>
+							</div>
+
+							<button
+								disabled={isLoading}
+								onClick={() => addToCart(thisProduct)}
+								className="flex items-center justify-center w-20 gap-2 px-3 py-1 text-2xl border rounded-lg border-rose-900 text-rose-900 hover:bg-rose-900 hover:text-white"
+							>
+								{isLoading ? (
+									<motion.div
+										key={isLoading}
+										animate={{ rotate: 360 }}
+										transition={{ repeat: "loop", duration: 1 }}
+									>
+										<PiCircleDashed />
+									</motion.div>
+								) : (
+									<div>
+										<PiShoppingCartLight />
+									</div>
+								)}
+							</button>
+						</div>
+					</section>
+				) : (
+					<section className="flex items-center justify-center h-40 gap-2 text-center">
+						<p className="">{description}</p>
+					</section>
+				)}
 			</section>
 		</motion.div>
 	);
