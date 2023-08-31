@@ -88,11 +88,17 @@ const ProductModal = ({ product, setShowProductModal }) => {
 			initial={{ opacity: 0, y: -20 }}
 			animate={{ opacity: 1, y: 0 }}
 			exit={{ opacity: 0, y: -20 }}
-			onClick={() => setShowProductModal(false)}
+			onClick={(e) => {
+				e.preventDefault();
+				setShowProductModal(false);
+			}}
 			className="fixed top-0 left-0 z-20 flex items-center justify-center w-full h-full"
 		>
 			<section
-				onClick={(e) => e.stopPropagation()}
+				onClick={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+				}}
 				className="w-full max-w-xl p-2 bg-gray-100 shadow-sm rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-60"
 			>
 				<div className="flex w-full gap-2 h-1/2">

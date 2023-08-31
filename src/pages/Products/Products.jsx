@@ -5,7 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import { Link, useSearchParams } from "react-router-dom";
 
 import { PiSquaresFourFill } from "react-icons/pi";
-import ProductsContext from "../../context/productsContext";
+import ProductsContext from "../../context/ProductsContext";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Products = () => {
