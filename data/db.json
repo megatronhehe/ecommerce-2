@@ -174,5 +174,15 @@
       "quantity": 1
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": "whateverhoodie2hoodieblackM",
+      "name": "whatever hoodie 2",
+      "type": "hoodie",
+      "color": "black",
+      "size": "M",
+      "quantity": 2,
+      "price": 30
+    }
+  ]
 }

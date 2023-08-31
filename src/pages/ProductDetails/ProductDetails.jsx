@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+import ProductsContext from "../../context/ProductsContext";
+import CartContext from "../../context/CartContext";
 
 import { Link, useParams } from "react-router-dom";
 
@@ -9,97 +12,136 @@ import { PiDotOutlineLight } from "react-icons/pi";
 const ProductDetails = () => {
 	const { id } = useParams();
 
-	const [thisProduct, setThisProduct] = useState([]);
-	const [isFetching, setIsFetching] = useState(false);
-	const [error, setError] = useState("");
+	const { addToCart } = useContext(CartContext);
+	const { products, isFetching } = useContext(ProductsContext);
+
+	const isProductsExist = products.length > 0;
+
+	const product = isProductsExist
+		? products.find((product) => product.id == id)
+		: {};
+
+	const { name, price, color, type, size, description } = product;
+
+	const [thisProduct, setThisProduct] = useState(product);
 
 	useEffect(() => {
-		setIsFetching(true);
-		setError("");
-		fetch(`http://localhost:8000/products/${id}`)
-			.then((res) => {
-				if (!res.ok) {
-					setError(`${res.status} | ${res.statusText}`);
-				} else {
-					return res.json();
-				}
-			})
-			.then((data) => setThisProduct(data))
-			.catch((err) => setError(err.message))
-			.finally(() => {
-				setIsFetching(false);
+		if (isProductsExist) {
+			setThisProduct({
+				id: "",
+				name: name,
+				type: type,
+				color: color[0],
+				size: size[0],
+				quantity: 1,
+				price: price,
 			});
-	}, [id]);
+		}
+	}, [isProductsExist]);
+
+	const getAltId = () =>
+		`${thisProduct.name}${thisProduct.type}${thisProduct.color}${thisProduct.size}`.replace(
+			/\s+/g,
+			""
+		);
+
+	useEffect(() => {
+		setThisProduct((prev) => ({ ...prev, id: getAltId() }));
+	}, [thisProduct.color, thisProduct.size]);
+
+	const selectColor = (color) => {
+		setThisProduct((prev) => ({ ...prev, color: color }));
+	};
+
+	const selectSize = (size) => {
+		setThisProduct((prev) => ({ ...prev, size: size }));
+	};
+
+	const addQty = () => {
+		setThisProduct((prev) => ({ ...prev, quantity: prev.quantity + 1 }));
+	};
+
+	const subQty = () => {
+		setThisProduct((prev) => ({ ...prev, quantity: prev.quantity - 1 }));
+	};
 
 	const colorElement =
-		Array.isArray(thisProduct.color) && thisProduct.color.length > 0
-			? thisProduct.color.map((item) => (
-					<li
-						key={item}
-						className={`bg-${item} h-12 w-12 rounded-full shadow-md border`}
-					></li>
-			  ))
-			: null;
+		isProductsExist &&
+		color.map((item) => (
+			<li
+				key={item}
+				onClick={() => selectColor(item)}
+				className={`relative bg-${item} w-8 h-8 rounded-full border flex items-center justify-center`}
+			>
+				{thisProduct.color === item && (
+					<div className="absolute w-6 h-6 border border-gray-300 rounded-full"></div>
+				)}
+			</li>
+		));
 
 	const sizeElement =
-		Array.isArray(thisProduct.size) && thisProduct.size.length > 0
-			? thisProduct.size.map((item) => (
-					<li
-						key={item}
-						className={`bg-${item} w-10 h-10 flex items-center justify-center rounded-md shadow-md border`}
-					>
-						{item}
-					</li>
-			  ))
-			: null;
+		isProductsExist &&
+		size.map((item) => (
+			<li
+				key={item}
+				onClick={() => selectSize(item)}
+				className={`flex items-center justify-center w-8 h-8 border border-lg ${
+					thisProduct.size === item
+						? "bg-rose-900 text-white border-rose-900"
+						: "bg-white text-rose-900"
+				}`}
+			>
+				{item}
+			</li>
+		));
 
 	return (
 		<main className="flex justify-center ">
 			<section className="w-full max-w-4xl p-2">
 				<h1 className="pb-4 mb-4 text-xl border-b">Product Details</h1>
-				{isFetching ? (
-					<p className="flex items-center justify-center w-full h-1/2">
-						loading ...{" "}
-					</p>
-				) : (
-					<>
-						<nav className="mb-4">
-							<ul className="flex items-center gap-2">
-								<Link to="/products">products</Link>
-								<PiDotOutlineLight />
-								<Link>{thisProduct.name}</Link>
-							</ul>
-						</nav>
-
-						<div className="flex flex-col gap-4 sm:flex-row">
-							<img
-								src={defaultImg}
-								className="w-full border rounded-xl sm:w-1/2"
-							/>
-
-							<div className="flex flex-col justify-between sm:w-1/2">
-								<h1 className="pb-2 text-2xl text-center border-b">
-									{thisProduct.name}
-								</h1>
-								<h2 className="text-center">{thisProduct.type}</h2>
-								<ul className="flex justify-center gap-2">{colorElement}</ul>
-								<ul className="flex justify-center gap-2">{sizeElement}</ul>
-								<div className="flex items-center justify-center text-2xl">
-									<button className="px-2 py-2">+</button>
-									<p className="px-2 py-2">{thisProduct.quantity}</p>
-									<button className="px-2 py-2">-</button>
+				<section>
+					{isFetching ? (
+						<p>loading</p>
+					) : (
+						<>
+							<div>
+								<h1>{name}</h1>
+								<h2>{type}</h2>
+								<span>{price}</span>
+								<ul className="flex gap-2">{colorElement}</ul>
+								<ul className="flex gap-2">{sizeElement}</ul>
+								<p>{description}</p>
+								<div className="flex items-center">
+									<button
+										onClick={addQty}
+										className="flex items-center justify-center w-12 h-12"
+									>
+										+
+									</button>
+									<span className="flex items-center justify-center w-12 h-12">
+										{thisProduct.quantity}
+									</span>
+									<button
+										onClick={subQty}
+										disabled={thisProduct.quantity < 2}
+										className="flex items-center justify-center w-12 h-12"
+									>
+										-
+									</button>
 								</div>
-								<button className="py-2 bg-rose-900 text-rose-100">
+								<button
+									onClick={() => addToCart(thisProduct)}
+									className="px-2 py-1 bg-rose-900 text-rose-100"
+								>
 									add to cart
 								</button>
 							</div>
-						</div>
-
-						<ul className="flex items-center gap-2 mb-4 text-sm"></ul>
-					</>
-				)}
+						</>
+					)}
+				</section>
 			</section>
 		</main>
 	);
 };
+
 export default ProductDetails;
