@@ -1,188 +1,130 @@
 {
-  "products": [
-    {
-      "id": 0,
-      "altId": "",
-      "name": "whatever hoodie 1",
-      "description": "insert description here insert description here insert description here insert description",
-      "type": "hoodie",
-      "size": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "color": [
-        "black",
-        "gray-600",
-        "white"
-      ],
-      "img": "...",
-      "price": 30,
-      "quantity": 1
-    },
-    {
-      "id": 1,
-      "altId": "",
-      "name": "whatever hoodie 2",
-      "description": "insert description here insert description here insert description here insert description",
-      "type": "hoodie",
-      "size": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "color": [
-        "black",
-        "gray-600",
-        "white"
-      ],
-      "img": "...",
-      "price": 30,
-      "quantity": 1
-    },
-    {
-      "id": 2,
-      "altId": "",
-      "name": "whatever shirt 1",
-      "description": "insert description here insert description here insert description here insert description",
-      "type": "shirt",
-      "size": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "color": [
-        "black",
-        "gray-600",
-        "white"
-      ],
-      "img": "...",
-      "price": 15,
-      "quantity": 1
-    },
-    {
-      "id": 3,
-      "altId": "",
-      "name": "whatever shirt 2",
-      "description": "insert description here insert description here insert description here insert description",
-      "type": "shirt",
-      "size": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "color": [
-        "black",
-        "gray-600",
-        "white"
-      ],
-      "img": "...",
-      "price": 15,
-      "quantity": 1
-    },
-    {
-      "id": 4,
-      "altId": "",
-      "name": "whatever crewneck 1",
-      "description": "insert description here insert description here insert description here insert description",
-      "type": "crewneck",
-      "size": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "color": [
-        "black",
-        "gray-600",
-        "white"
-      ],
-      "img": "...",
-      "price": 20,
-      "quantity": 1
-    },
-    {
-      "id": 5,
-      "name": "whatever sleeveless 1",
-      "description": "insert description here insert description here insert description here insert description",
-      "type": "sleeveless",
-      "size": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "color": [
-        "black",
-        "gray-600",
-        "white"
-      ],
-      "img": "...",
-      "price": 15,
-      "quantity": 1
-    },
-    {
-      "id": 6,
-      "name": "whatever sleeveless 2",
-      "description": "insert description here insert description here insert description here insert description",
-      "type": "sleeveless",
-      "size": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "color": [
-        "black",
-        "gray-600",
-        "white"
-      ],
-      "img": "...",
-      "price": 15,
-      "quantity": 1
-    },
-    {
-      "id": 57,
-      "name": "whatever sleeveless 3",
-      "description": "insert description here insert description here insert description here insert description",
-      "type": "sleeveless",
-      "size": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL"
-      ],
-      "color": [
-        "black",
-        "gray-600",
-        "white"
-      ],
-      "img": "...",
-      "price": 15,
-      "quantity": 1
-    }
-  ],
-  "cart": [
-    {
-      "id": "whateverhoodie2hoodieblackM",
-      "name": "whatever hoodie 2",
-      "type": "hoodie",
-      "color": "black",
-      "size": "M",
-      "quantity": 2,
-      "price": 30
-    }
-  ]
+	"products": [
+		{
+			"id": 0,
+			"altId": "",
+			"name": "whatever hoodie 1",
+			"description": "insert description here insert description here insert description here insert description",
+			"type": "hoodie",
+			"size": ["XS", "S", "M", "L", "XL"],
+			"color": ["black", "gray-600", "white"],
+			"img": [
+				"src/assets/shirt1/blackshirt1.jpg",
+				"src/assets/shirt1/grayshirt1.jpg",
+				"src/assets/shirt1/whiteshirt1.jpg"
+			],
+			"price": 30,
+			"quantity": 1
+		},
+		{
+			"id": 1,
+			"altId": "",
+			"name": "whatever hoodie 2",
+			"description": "insert description here insert description here insert description here insert description",
+			"type": "hoodie",
+			"size": ["XS", "S", "M", "L", "XL"],
+			"color": ["black", "gray-600", "white"],
+			"img": [
+				"src/assets/shirt1/blackshirt1.jpg",
+				"src/assets/shirt1/grayshirt1.jpg",
+				"src/assets/shirt1/whiteshirt1.jpg"
+			],
+			"price": 30,
+			"quantity": 1
+		},
+		{
+			"id": 2,
+			"altId": "",
+			"name": "whatever shirt 1",
+			"description": "insert description here insert description here insert description here insert description",
+			"type": "shirt",
+			"size": ["XS", "S", "M", "L", "XL"],
+			"color": ["black", "gray-600", "white"],
+			"img": [
+				"src/assets/shirt1/blackshirt1.jpg",
+				"src/assets/shirt1/grayshirt1.jpg",
+				"src/assets/shirt1/whiteshirt1.jpg"
+			],
+			"price": 15,
+			"quantity": 1
+		},
+		{
+			"id": 3,
+			"altId": "",
+			"name": "whatever shirt 2",
+			"description": "insert description here insert description here insert description here insert description",
+			"type": "shirt",
+			"size": ["XS", "S", "M", "L", "XL"],
+			"color": ["black", "gray-600", "white"],
+			"img": [
+				"src/assets/shirt1/blackshirt1.jpg",
+				"src/assets/shirt1/grayshirt1.jpg",
+				"src/assets/shirt1/whiteshirt1.jpg"
+			],
+			"price": 15,
+			"quantity": 1
+		},
+		{
+			"id": 4,
+			"altId": "",
+			"name": "whatever crewneck 1",
+			"description": "insert description here insert description here insert description here insert description",
+			"type": "crewneck",
+			"size": ["XS", "S", "M", "L", "XL"],
+			"color": ["black", "gray-600", "white"],
+			"img": [
+				"src/assets/shirt1/blackshirt1.jpg",
+				"src/assets/shirt1/grayshirt1.jpg",
+				"src/assets/shirt1/whiteshirt1.jpg"
+			],
+			"price": 20,
+			"quantity": 1
+		},
+		{
+			"id": 5,
+			"name": "whatever sleeveless 1",
+			"description": "insert description here insert description here insert description here insert description",
+			"type": "sleeveless",
+			"size": ["XS", "S", "M", "L", "XL"],
+			"color": ["black", "gray-600", "white"],
+			"img": [
+				"src/assets/shirt1/blackshirt1.jpg",
+				"src/assets/shirt1/grayshirt1.jpg",
+				"src/assets/shirt1/whiteshirt1.jpg"
+			],
+			"price": 15,
+			"quantity": 1
+		},
+		{
+			"id": 6,
+			"name": "whatever sleeveless 2",
+			"description": "insert description here insert description here insert description here insert description",
+			"type": "sleeveless",
+			"size": ["XS", "S", "M", "L", "XL"],
+			"color": ["black", "gray-600", "white"],
+			"img": [
+				"src/assets/shirt1/blackshirt1.jpg",
+				"src/assets/shirt1/grayshirt1.jpg",
+				"src/assets/shirt1/whiteshirt1.jpg"
+			],
+			"price": 15,
+			"quantity": 1
+		},
+		{
+			"id": 57,
+			"name": "whatever sleeveless 3",
+			"description": "insert description here insert description here insert description here insert description",
+			"type": "sleeveless",
+			"size": ["XS", "S", "M", "L", "XL"],
+			"color": ["black", "gray-600", "white"],
+			"img": [
+				"src/assets/shirt1/blackshirt1.jpg",
+				"src/assets/shirt1/grayshirt1.jpg",
+				"src/assets/shirt1/whiteshirt1.jpg"
+			],
+			"price": 15,
+			"quantity": 1
+		}
+	],
+	"cart": []
 }

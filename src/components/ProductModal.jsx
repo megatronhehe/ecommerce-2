@@ -21,6 +21,7 @@ const ProductModal = ({ product, setShowProductModal }) => {
 		quantity: 1,
 		price: price,
 	});
+	const [selectedImage, setSelectedImage] = useState(img[0]);
 
 	const [selectedSection, setSelectedSection] = useState("modify");
 
@@ -49,6 +50,17 @@ const ProductModal = ({ product, setShowProductModal }) => {
 	const subQty = () => {
 		setThisProduct((prev) => ({ ...prev, quantity: prev.quantity - 1 }));
 	};
+
+	const imagesElement = img.map((item, i) => (
+		<li key={i} onClick={() => setSelectedImage(item)}>
+			<img
+				src={item}
+				className={`w-full border-2 rounded-xl ${
+					selectedImage === item ? "border-rose-900" : "border-gray-100"
+				}`}
+			/>
+		</li>
+	));
 
 	const colorElement = color.map((color) => (
 		<motion.li
@@ -102,18 +114,8 @@ const ProductModal = ({ product, setShowProductModal }) => {
 				className="w-full max-w-xl p-2 bg-gray-100 shadow-sm rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-60"
 			>
 				<div className="flex w-full gap-2 h-1/2">
-					<img src={defaultImg} className="object-cover w-5/6 rounded-xl" />
-					<ul className="flex flex-col w-1/6 gap-2 ">
-						<li>
-							<img src={defaultImg} className="w-full rounded-xl" />
-						</li>
-						<li>
-							<img src={defaultImg} className="w-full rounded-xl" />
-						</li>
-						<li>
-							<img src={defaultImg} className="w-full rounded-xl" />
-						</li>
-					</ul>
+					<img src={selectedImage} className="object-cover w-5/6 rounded-xl" />
+					<ul className="flex flex-col w-1/6 gap-2 ">{imagesElement}</ul>
 				</div>
 
 				<div className="py-2">
