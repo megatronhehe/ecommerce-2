@@ -1,19 +1,12 @@
 import React, { useContext, useState } from "react";
 
-import defaultImg from "./../assets/defaultimg.jpg";
 import CartItems from "./CartItems";
 
-import CartContext from "../context/CartContext";
+import CartContext from "../../context/CartContext";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import {
-	PiArrowLineRightLight,
-	PiX,
-	PiCircleDashed,
-	PiPlusLight,
-	PiMinusLight,
-} from "react-icons/pi";
+import { PiArrowLineRightLight } from "react-icons/pi";
 
 const Cart = () => {
 	const {

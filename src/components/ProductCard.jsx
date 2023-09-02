@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 
-import defaultImg from "../assets/defaultImg.jpg";
-
 import { Link } from "react-router-dom";
 
 import { PiPlusLight } from "react-icons/pi";
-import ProductModal from "./ProductModal";
+import ProductModal from "./ProductModal/ProductModal";
 
 import { AnimatePresence, motion } from "framer-motion";
 
 const ProductCard = ({ product }) => {
-	const { id, name, type, price } = product;
+	const { id, name, type, price, img } = product;
 
 	const [showProductModal, setShowProductModal] = useState(false);
 
@@ -20,7 +18,7 @@ const ProductCard = ({ product }) => {
 			key={id}
 			className="relative flex flex-col items-center p-1 bg-gray-100 rounded-xl"
 		>
-			<img src={defaultImg} className="rounded-xl" />
+			<img src={img[0]} className="rounded-xl" />
 			<h2>{name}</h2>
 			<h4 className="text-xs">{type}</h4>
 			<h3 className="absolute text-lg top-3 left-3">${price - 0.01}</h3>

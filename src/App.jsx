@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 import { AnimatePresence } from "framer-motion";

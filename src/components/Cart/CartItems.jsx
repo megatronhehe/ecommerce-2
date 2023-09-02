@@ -1,8 +1,8 @@
 import React from "react";
 
-import defaultImg from "./../assets/defaultimg.jpg";
+import defaultImg from "../../assets/defaultimg.jpg";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { PiX, PiCircleDashed, PiPlusLight, PiMinusLight } from "react-icons/pi";
 
