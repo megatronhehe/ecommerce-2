@@ -20,7 +20,7 @@ const Navbar = () => {
 	const { setToggleCart } = useContext(CartContext);
 
 	return (
-		<header className="sticky top-0 z-10 backdrop-filter backdrop-blur-sm">
+		<header className="sticky top-0 z-10 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm">
 			{/* <div className="bg-black bg-white bg-gray-600 bg-blue-800 bg-rose-900"></div> */}
 
 			<div className="flex items-center justify-center w-full text-2xl bg-rose-400 text-rose-900 ">
@@ -48,7 +48,7 @@ const Navbar = () => {
 				</h1>
 			</div>
 
-			<div className="flex items-center justify-center w-full text-3xl ">
+			<div className="flex items-center justify-center w-full pb-2 text-3xl rounded-b-xl">
 				<nav className="flex justify-center w-full max-w-3xl px-3">
 					<ul className="flex items-center gap-2">
 						<li className="p-3 text-sm">

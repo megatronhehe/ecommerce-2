@@ -5,14 +5,15 @@ import ColorItem from "./ColorItem";
 import SizeItem from "./SizeItem";
 import SectionNav from "./SectionNav";
 import ModifySection from "./ModifySection";
+import AddToCartButton from "./AddToCartButton";
+import BreadCrumbs from "./BreadCrumbs";
 
 import ProductsContext from "../../context/ProductsContext";
 import CartContext from "../../context/CartContext";
 
-import { useParams } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
-import AddToCartButton from "./AddToCartButton";
-import BreadCrumbs from "./BreadCrumbs";
+import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
 	const { id } = useParams();
@@ -119,7 +120,14 @@ const ProductDetails = () => {
 					) : (
 						<>
 							<section className="flex gap-2 sm:w-3/5">
-								<img src={`../${selectedImage}`} className="w-5/6 rounded-xl" />
+								<motion.div
+									key={selectedImage}
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									className="w-5/6 overflow-hidden rounded-xl"
+								>
+									<img src={`../${selectedImage}`} className="w-full" />
+								</motion.div>
 								<ul className="flex flex-col w-1/6 gap-2">{imagesElement}</ul>
 							</section>
 
@@ -135,18 +143,26 @@ const ProductDetails = () => {
 								/>
 
 								<div className="flex flex-col items-center justify-around h-full gap-4 py-4">
-									{selectedSection === "modify" ? (
-										<ModifySection
-											price={price}
-											colorElement={colorElement}
-											sizeElement={sizeElement}
-											addQty={addQty}
-											subQty={subQty}
-											thisProduct={thisProduct}
-										/>
-									) : (
-										<p className="p-4 text-center">{description}</p>
-									)}
+									<AnimatePresence>
+										{selectedSection === "modify" ? (
+											<ModifySection
+												price={price}
+												colorElement={colorElement}
+												sizeElement={sizeElement}
+												addQty={addQty}
+												subQty={subQty}
+												thisProduct={thisProduct}
+											/>
+										) : (
+											<motion.p
+												initial={{ opacity: 0 }}
+												animate={{ opacity: 1 }}
+												className="p-4 text-center"
+											>
+												{description}
+											</motion.p>
+										)}
+									</AnimatePresence>
 								</div>
 
 								<AddToCartButton

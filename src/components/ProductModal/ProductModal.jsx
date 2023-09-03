@@ -100,7 +100,14 @@ const ProductModal = ({ product, setShowProductModal }) => {
 				className="w-full max-w-xl p-2 bg-white shadow-md rounded-xl backdrop-filter backdrop-blur-lg bg-opacity-60"
 			>
 				<div className="flex w-full gap-2 h-1/2">
-					<img src={selectedImage} className="object-cover w-5/6 rounded-xl" />
+					<motion.div
+						key={selectedImage}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						className="object-cover w-5/6 overflow-hidden rounded-xl"
+					>
+						<img src={selectedImage} />
+					</motion.div>
 					<ul className="flex flex-col w-1/6 gap-2 ">{imagesElement}</ul>
 				</div>
 

@@ -6,7 +6,7 @@ const SectionNav = ({ setSelectedSection, selectedSection }) => {
 			<ul className="flex w-full">
 				<li
 					onClick={() => setSelectedSection("modify")}
-					className={`w-1/2 py-1 text-center border-b-4 ${
+					className={`w-1/2 py-1 text-center border-b-4 cursor-pointer ${
 						selectedSection === "modify" ? "border-rose-900" : "border-white"
 					}`}
 				>
@@ -14,7 +14,7 @@ const SectionNav = ({ setSelectedSection, selectedSection }) => {
 				</li>
 				<li
 					onClick={() => setSelectedSection("description")}
-					className={`w-1/2 py-1 text-center border-b-4 ${
+					className={`w-1/2 py-1 text-center border-b-4 cursor-pointer ${
 						selectedSection === "description"
 							? "border-rose-900"
 							: "border-white"

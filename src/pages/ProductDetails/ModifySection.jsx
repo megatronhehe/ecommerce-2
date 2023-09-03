@@ -1,5 +1,9 @@
 import React from "react";
 
+import { motion } from "framer-motion";
+
+import { PiPlusLight, PiMinusLight } from "react-icons/pi";
+
 const ModifySection = ({
 	price,
 	colorElement,
@@ -9,30 +13,36 @@ const ModifySection = ({
 	subQty,
 }) => {
 	return (
-		<>
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			className="flex flex-col items-center justify-center gap-4"
+		>
 			<h3 className="text-xl">${price - 0.01}</h3>
 			<ul className="flex gap-2">{colorElement}</ul>
 
 			<ul className="flex gap-2">{sizeElement}</ul>
 			<div className="flex items-center">
-				<button
+				<motion.button
+					whileHover={{ scale: 1.2 }}
 					onClick={addQty}
-					className="flex items-center justify-center w-12 h-12"
+					className="flex items-center justify-center w-8 h-8 border rounded-full "
 				>
-					+
-				</button>
-				<span className="flex items-center justify-center w-12 h-12">
+					<PiPlusLight />
+				</motion.button>
+				<span className="flex items-center justify-center w-10 h-10">
 					{thisProduct.quantity}
 				</span>
-				<button
+				<motion.button
+					whileHover={{ scale: 1.2 }}
 					onClick={subQty}
 					disabled={thisProduct.quantity < 2}
-					className="flex items-center justify-center w-12 h-12"
+					className="flex items-center justify-center w-8 h-8 border rounded-full"
 				>
-					-
-				</button>
+					<PiMinusLight />
+				</motion.button>
 			</div>
-		</>
+		</motion.div>
 	);
 };
 export default ModifySection;

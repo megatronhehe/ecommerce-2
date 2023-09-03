@@ -15,7 +15,11 @@ const ModifySection = ({
 	addToCart,
 }) => {
 	return (
-		<section className="flex h-40 gap-2">
+		<motion.section
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			className="flex h-40 gap-2"
+		>
 			<div className="flex flex-col items-center justify-between w-2/3 gap-4 p-2 border rounded-lg">
 				<div className="flex flex-col items-center gap-2">
 					<h3>color</h3>
@@ -71,7 +75,7 @@ const ModifySection = ({
 					)}
 				</button>
 			</div>
-		</section>
+		</motion.section>
 	);
 };
 

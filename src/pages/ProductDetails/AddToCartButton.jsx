@@ -9,7 +9,7 @@ const AddToCartButton = ({ isLoading, addToCart, thisProduct }) => {
 		<button
 			disabled={isLoading}
 			onClick={() => addToCart(thisProduct)}
-			className="w-full px-2 py-1 rounded-lg bg-rose-900 text-rose-100"
+			className="w-full px-2 py-1 border rounded-lg bg-rose-900 border-rose-900 text-rose-100 hover:bg-white hover:text-rose-900"
 		>
 			{isLoading ? (
 				<motion.div
