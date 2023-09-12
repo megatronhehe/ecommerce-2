@@ -97,7 +97,7 @@ const ProductModal = ({ product, setShowProductModal }) => {
 					e.preventDefault();
 					e.stopPropagation();
 				}}
-				className="w-full max-w-xl p-2 bg-white shadow-md rounded-xl backdrop-filter backdrop-blur-lg bg-opacity-60"
+				className="w-full max-w-xl p-2 bg-white shadow-md rounded-xl "
 			>
 				<div className="flex w-full gap-2 h-1/2">
 					<motion.div
