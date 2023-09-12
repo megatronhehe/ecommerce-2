@@ -25,7 +25,7 @@ const CartItems = ({
 			key={item.id}
 		>
 			<div className="relative flex justify-between gap-2 p-2 mb-2 bg-white border">
-				<img src={`${item.img}`} className="w-2/5 border" />
+				<img src={`../${item.img}`} className="w-2/5 border" />
 
 				<div className="flex flex-col items-center w-full gap-2">
 					<h1 className="pb-2 border-b">{item.name}</h1>
