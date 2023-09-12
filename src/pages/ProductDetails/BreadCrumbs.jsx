@@ -8,11 +8,11 @@ const BreadCrumbs = ({ name = ". . ." }) => {
 	return (
 		<nav className="mb-4">
 			<ul className="flex items-center gap-2">
-				<li>back</li>
+				<Link to="/products">products</Link>
 				<li>
 					<PiDotOutlineLight />
 				</li>
-				<Link to="/products">products</Link>
+				<li>hoodie</li>
 				<li>
 					<PiDotOutlineLight />
 				</li>

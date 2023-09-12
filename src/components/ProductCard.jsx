@@ -21,7 +21,9 @@ const ProductCard = ({ product }) => {
 			<img src={img[0]} className="rounded-xl" />
 			<h2>{name}</h2>
 			<h4 className="text-xs">{type}</h4>
-			<h3 className="absolute text-lg top-3 left-3">${price - 0.01}</h3>
+			<h3 className="absolute px-2 py-1 text-lg font-semibold bg-white top-1 left-1 rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-80">
+				${price}
+			</h3>
 			<motion.button
 				whileHover={{ scale: 1.2 }}
 				onClick={(e) => {

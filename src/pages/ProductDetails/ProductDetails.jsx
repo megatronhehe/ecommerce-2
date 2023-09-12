@@ -13,10 +13,13 @@ import CartContext from "../../context/CartContext";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { PiCaretLeftLight } from "react-icons/pi";
 
 const ProductDetails = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
 
 	const { addToCart, isLoading } = useContext(CartContext);
 	const { products, isFetching } = useContext(ProductsContext);
@@ -110,6 +113,13 @@ const ProductDetails = () => {
 	return (
 		<main className="flex justify-center ">
 			<section className="w-full max-w-4xl p-2">
+				<button
+					onClick={() => navigate(-1)}
+					className="flex items-center gap-1 mb-2 text-sm text-gray-400"
+				>
+					<PiCaretLeftLight />
+					back
+				</button>
 				<BreadCrumbs name={name} />
 
 				<section className="flex flex-col gap-4 sm:flex-row">

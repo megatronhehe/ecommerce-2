@@ -16,7 +16,7 @@ const ModifySection = ({
 		<motion.div
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
-			className="flex flex-col items-center justify-center gap-4"
+			className="flex flex-col items-center justify-around h-full gap-4"
 		>
 			<h3 className="text-xl">${price - 0.01}</h3>
 			<ul className="flex gap-2">{colorElement}</ul>
