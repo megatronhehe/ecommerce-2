@@ -11,12 +11,12 @@ const ColorItem = ({ color, selectColor, thisProduct }) => {
 		>
 			<AnimatePresence>
 				{thisProduct.color === color && (
-					<motion.li
+					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						className="absolute border-2 border-gray-300 rounded-full w-7 h-7"
-					></motion.li>
+					></motion.div>
 				)}
 			</AnimatePresence>
 		</motion.li>

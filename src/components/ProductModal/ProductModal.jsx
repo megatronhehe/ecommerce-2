@@ -23,6 +23,7 @@ const ProductModal = ({ product, setShowProductModal }) => {
 		size: size[0],
 		quantity: 1,
 		price: price,
+		img: img[0],
 	});
 	const [selectedImage, setSelectedImage] = useState(img[0]);
 

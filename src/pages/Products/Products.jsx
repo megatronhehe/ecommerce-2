@@ -93,7 +93,7 @@ const Products = () => {
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
-							className="grid grid-cols-2 gap-2 md:grid-cols-3"
+							className="grid grid-cols-2 gap-4 md:grid-cols-3"
 						>
 							{productsElement}
 						</motion.ul>

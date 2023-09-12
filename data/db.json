@@ -139,5 +139,16 @@
       "quantity": 1
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": "whatevercrewneck1crewneckblackXS",
+      "name": "whatever crewneck 1",
+      "type": "crewneck",
+      "color": "black",
+      "size": "XS",
+      "quantity": 1,
+      "price": 20,
+      "img": "src/assets/crewneck1/crewneck1.jpg"
+    }
+  ]
 }

@@ -46,6 +46,7 @@ const ProductDetails = () => {
 				size: size[0],
 				quantity: 1,
 				price: price,
+				img: img[0],
 			});
 			setSelectedImage(img[0]);
 		}

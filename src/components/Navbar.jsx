@@ -42,13 +42,13 @@ const Navbar = () => {
 				</nav>
 			</div>
 
-			<div className="flex items-center justify-center w-full h-16 text-4xl text-gray-500 border-b rounded-b-3xl">
+			<div className="flex items-center justify-center w-full h-16 text-4xl bg-opacity-50 text-rose-900 backdrop-filter backdrop-blur-sm rounded-b-3xl">
 				<h1 className="flex items-center gap-2 ">
 					whatevs <PiDiamondsFourFill className="text-base" />
 				</h1>
 			</div>
 
-			<div className="flex items-center justify-center w-full pb-2 text-3xl rounded-b-xl">
+			<div className="flex items-center justify-center w-full pb-2 text-3xl rounded-b-3xl">
 				<nav className="flex justify-center w-full max-w-3xl px-3">
 					<ul className="flex items-center gap-2">
 						<li className="p-3 text-sm">
