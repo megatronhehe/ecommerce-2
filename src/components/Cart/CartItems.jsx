@@ -17,8 +17,6 @@ const CartItems = ({
 	removeFromCart,
 	isLoading,
 }) => {
-	console.log(item);
-
 	return (
 		<motion.li
 			initial={false}

@@ -14,7 +14,9 @@
         "XL"
       ],
       "color": [
-        "black"
+        "black",
+        "gray-600",
+        "white"
       ],
       "img": [
         "src/assets/hoodie1/hoodie1.jpg"
@@ -36,7 +38,9 @@
         "XL"
       ],
       "color": [
-        "black"
+        "black",
+        "gray-600",
+        "white"
       ],
       "img": [
         "src/assets/hoodie2/hoodie2.jpg"
@@ -58,7 +62,9 @@
         "XL"
       ],
       "color": [
-        "black"
+        "black",
+        "gray-600",
+        "white"
       ],
       "img": [
         "src/assets/shirt1/shirt1.jpg"
@@ -139,16 +145,5 @@
       "quantity": 1
     }
   ],
-  "cart": [
-    {
-      "id": "whatevercrewneck1crewneckblackXS",
-      "name": "whatever crewneck 1",
-      "type": "crewneck",
-      "color": "black",
-      "size": "XS",
-      "quantity": 1,
-      "price": 20,
-      "img": "src/assets/crewneck1/crewneck1.jpg"
-    }
-  ]
+  "cart": []
 }

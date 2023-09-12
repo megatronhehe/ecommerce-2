@@ -8,7 +8,7 @@ const ColorItem = ({ color, selectColor, thisProduct }) => {
 			whileHover={{ scale: 1.3 }}
 			key={color}
 			onClick={() => selectColor(color)}
-			className={`bg-${color} w-8 h-8 rounded-full shadow-md flex items-center justify-center `}
+			className={`bg-${color} w-8 h-8 cursor-pointer rounded-full shadow-md flex items-center justify-center `}
 		>
 			<AnimatePresence>
 				{thisProduct.color === color && (
