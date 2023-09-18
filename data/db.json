@@ -145,5 +145,16 @@
       "quantity": 1
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": "whateverhoodie1hoodiegray-600M",
+      "name": "whatever hoodie 1",
+      "type": "hoodie",
+      "color": "gray-600",
+      "size": "M",
+      "quantity": 2,
+      "price": 30,
+      "img": "src/assets/hoodie1/hoodie1.jpg"
+    }
+  ]
 }

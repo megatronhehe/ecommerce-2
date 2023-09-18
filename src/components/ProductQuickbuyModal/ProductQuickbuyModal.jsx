@@ -5,7 +5,13 @@ import SizeItem from "../SizeItem";
 
 import { motion } from "framer-motion";
 
-import { PiShoppingCartLight, PiCircleDashed, PiX } from "react-icons/pi";
+import {
+	PiShoppingCartLight,
+	PiCircleDashed,
+	PiX,
+	PiPlus,
+	PiMinus,
+} from "react-icons/pi";
 
 import CartContext from "../../context/CartContext";
 
@@ -93,11 +99,20 @@ const ProductQuickbuyModal = ({ setShowQuickBuyModal, product }) => {
 				<h1>{name}</h1>
 				<ul className="flex gap-2">{colorElement}</ul>
 				<ul className="flex gap-2">{sizeElement}</ul>
-				<div className="flex justify-between w-1/3">
-					<button onClick={addQty}>+</button>
+				<div className="flex items-center justify-between w-1/3">
+					<button
+						onClick={addQty}
+						className="flex items-center justify-center w-10 h-10 border rounded-full"
+					>
+						<PiPlus />
+					</button>
 					<span>{thisProduct.quantity}</span>
-					<button disabled={thisProduct.quantity < 2} onClick={subQty}>
-						-
+					<button
+						disabled={thisProduct.quantity < 2}
+						onClick={subQty}
+						className="flex items-center justify-center w-10 h-10 border rounded-full"
+					>
+						<PiMinus />
 					</button>
 				</div>
 				<button
