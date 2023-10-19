@@ -20,7 +20,9 @@ const Products = () => {
 			? products.filter((product) => product.type === typeFilter)
 			: products;
 
-	const productsTypeArray = ["hoodie", "shirt", "crewneck", "sleeveless"];
+	const productsTypeArray = [
+		...new Set(products.map((product) => product.type)),
+	];
 
 	const productsElement =
 		filteredProductsArray &&
